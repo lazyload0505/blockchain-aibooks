@@ -40,5 +40,6 @@ next-env.d.ts
 
 # projects
 pnpm-lock.yaml
+package-lock.json
 /public/docs/
 /.vercel/

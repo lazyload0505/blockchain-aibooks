@@ -3,7 +3,6 @@ import { Transformer } from 'markmap-lib';
 import { Markmap } from 'markmap-view';
 
 import { APP_DEV_MAP_DATA } from '../../data/appdev';
-import { CORE_DEV_MAP_DATA } from '../../data/coredev';
 
 const transformer = new Transformer();
 

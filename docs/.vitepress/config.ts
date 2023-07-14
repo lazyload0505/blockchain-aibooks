@@ -14,9 +14,9 @@ export default defineConfig({
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "Docs Home", link: "/" },
+      { text: "Docs Home", link: "/home" },
       { text: "Blockchain", link: "/blockchain/blockchain" },
-      { text: "Wiki Words", link: "/wiki-words/index" },
+      { text: "Wiki Words", link: "/wiki-words/home" },
       { text: "Back to", link: "backtomain" },
     ],
 
@@ -91,7 +91,7 @@ export default defineConfig({
         {
           text: "Wiki Words",
           items: [
-            { text: "Index", link: "/wiki-words/" },
+            { text: "Index", link: "/wiki-words/home" },
             { text: "A", link: "/wiki-words/wiki-a" },
             { text: "B", link: "/wiki-words/wiki-b" },
           ],
