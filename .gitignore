@@ -33,3 +33,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vitpress
+/docs/.vitepress/dist
+/docs/.vitepress/cache
+
+# projects
+pnpm-lock.yaml
+/public/docs/
