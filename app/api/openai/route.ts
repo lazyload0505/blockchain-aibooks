@@ -10,13 +10,40 @@ export const runtime = 'edge'
  
 export async function POST(req: Request) {
   const { prompt } = await req.json()
-  const response = await openai.createCompletion({
-    model: 'text-davinci-003',
-    stream: true,
-    temperature: 0.6,
-    prompt: prompt,
+//   const completion = await openai.createCompletion({
+//     model: 'text-davinci-003',
+//     stream: true,
+//     temperature: 0.6,
+//     prompt: prompt,
+//   })
+
+  const completion = await openai.createChatCompletion({
+	model: "gpt-3.5-turbo-16k",
+	// gpt-3.5-turbo-16k
+	// gpt-4-32k
+	messages: [
+	  { role: "system", content: "You are a blockchain development expert." },
+	  { role: "user", content: prompt },
+	//   {
+	// 	role: "assistant",
+	// 	content: "The Los Angeles Dodgers won the World Series in 2020.",
+	//   },
+	//   { role: "user", content: "Where was it played?" },
+	],
+	max_tokens: 4000,
+	temperature: 0,
+	stream: true,
   })
- 
-  const stream = OpenAIStream(response)
+
+  const stream = OpenAIStream(completion)
   return new StreamingTextResponse(stream)
+ 
+//   return new Response(response.body, {
+// 	headers: {
+// 	  "Access-Control-Allow-Origin": "*",
+// 	  "Content-Type": "text/event-stream;charset=utf-8",
+// 	  "Cache-Control": "no-cache, no-transform",
+// 	  "X-Accel-Buffering": "no",
+// 	},
+//   })
 }
