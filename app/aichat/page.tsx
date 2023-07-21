@@ -1,14 +1,8 @@
-"use client";
+'use client'
 
-import '../../app/globals.css';
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Layout, Menu, theme } from 'antd';
-const { Sider, Content } = Layout;
-
-import { AppLayout } from '../../common/components/AppLayout';
-
-export default function ClientSection() {
+export default function AIChat() {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [response, setResponse] = useState<String>("");
@@ -54,13 +48,7 @@ export default function ClientSection() {
   };
 
   return (
-    <AppLayout>
-      <Layout>
-        <Sider>
-          <div>Menu</div>
-        </Sider>
-        <Content>
-          <div className="w-full max-w-xl">
+    <div className="w-full max-w-xl">
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -91,8 +79,5 @@ export default function ClientSection() {
               </div>
             )}
           </div>
-        </Content>
-      </Layout>
-    </AppLayout>
   );
 }
