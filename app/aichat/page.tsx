@@ -1,17 +1,21 @@
 'use client'
 import React, { useState, useRef} from "react";
 
+// import MDBContainer from "mdb-react-ui-kit";
+// import MDBRow from "mdb-react-ui-kit";
+// import MDBCol from "mdb-react-ui-kit";
+// import MDBCard from "mdb-react-ui-kit";
+// import MDBCardBody from "mdb-react-ui-kit";
+// import MDBTypography from "mdb-react-ui-kit";
+// import MDBCardHeader from "mdb-react-ui-kit";
 import {
   MDBContainer,
   MDBRow,
   MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBIcon,
-  MDBBtn,
   MDBTypography,
-  MDBTextArea,
-  MDBCardHeader,
+  MDBCardHeader 
 } from "mdb-react-ui-kit";
 
 export default function Chat() {
@@ -203,9 +207,9 @@ export default function Chat() {
         <MDBCol md="6" lg="7" xl="9">
           <MDBTypography>
             <ul style={{'height': '400px', 'overflow': 'scroll'}} ref={messagesEndRef}>
-            {messages.map((item) => {
+            {messages.map((item, index) => {
               return (
-                <li className={"d-flex mb-4 " + (item.type == 'ai' ? "justify-content-start" : "justify-content-end") }>
+                <li key={index} className={"d-flex mb-4 " + (item.type == 'ai' ? "justify-content-start" : "justify-content-end") }>
               {item.type == 'ai' && <img
                 src="https://img.icons8.com/fluency/2x/iron-man.png"
                 alt="avatar"
