@@ -60,13 +60,17 @@ export default function Chat() {
     const decoder = new TextDecoder();
     let done = false;
 
+    let message = '';
+
     while (!done) {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
+      message += chunkValue;
       setResponse((prev) => prev + chunkValue);
     }
-    addMessage({'type': 'ai', msg: response.slice()});
+    console.log('AI message res:', message);
+    addMessage({'type': 'ai', msg: message});
     setLoading(false);
     scrollToBottom();
   };
