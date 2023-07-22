@@ -32,6 +32,7 @@ export default function Chat() {
     setLoading(true);
 
     addMessage({'type': 'user', msg: input});
+    setInput('');
 
     const res = await fetch("/api/openai", {
       method: "POST",
