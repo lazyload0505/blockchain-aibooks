@@ -78,7 +78,7 @@ export default function Chat() {
   return (
     <div className="container-fluid py-1" style={{ backgroundColor: "#eee" }}>
       <div className="row">
-        <div className="col-3">
+        <div className="col-4">
           <h5 className="font-weight-bold mb-3 text-center text-lg-start">
             AI Bots
           </h5>
@@ -110,7 +110,7 @@ export default function Chat() {
                         width="60"
                       />
                       <div className="pt-1">
-                        <p className="fw-bold mb-0">Ecosystem Expert Bot</p>
+                        <p className="fw-bold mb-0">Ecosystem Expert Bot (WIP)</p>
                         <p className="small text-muted">
                           I am AI Bot as blockchain ecosystem expert.
                         </p>
@@ -126,7 +126,7 @@ export default function Chat() {
                         width="60"
                       />
                       <div className="pt-1">
-                        <p className="fw-bold mb-0">PDF Reader</p>
+                        <p className="fw-bold mb-0">PDF Reader (WIP)</p>
                         <p className="small text-muted">
                           Upload you PDF file and ask about the document.
                         </p>
@@ -137,8 +137,8 @@ export default function Chat() {
             </div>
           </div>
         </div>
-        <div className="col-9">
-            <ul className="row" style={{'height': '400px', 'overflow': 'scroll'}} ref={messagesEndRef}>
+        <div className="col-8">
+            <ul className="row" style={{'height': 'calc(100vh - 280px)', 'overflow': 'scroll'}} ref={messagesEndRef}>
             {messages.map((item, index) => {
               return (
                 <li key={index} className={"d-flex mb-4 " + (item.type == 'ai' ? "justify-content-start" : "justify-content-end") }>
