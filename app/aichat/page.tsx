@@ -5,7 +5,7 @@ export default function Chat() {
 
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
-  const [response, setResponse] = useState<String>("");
+  const [response, setResponse] = useState<string>("");
   const messagesEndRef = useRef<any>(null)
 
   const prompt = `Question is '${input}', Generate a answer with less than 800 characters.`;
@@ -33,7 +33,7 @@ export default function Chat() {
 
     addMessage({'type': 'user', msg: input});
 
-    const response = await fetch("/api/openai", {
+    const res = await fetch("/api/openai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function Chat() {
       }),
     });
 
-    if (!response.ok) {
+    if (!res.ok) {
       addMessage({'type': 'ai', msg: 'Error happen when chating with AI...'});
       setLoading(false);
       scrollToBottom();
@@ -51,7 +51,7 @@ export default function Chat() {
     }
 
     // This data is a ReadableStream
-    const data = response.body;
+    const data = res.body;
     if (!data) {
       return;
     }
@@ -66,6 +66,7 @@ export default function Chat() {
       const chunkValue = decoder.decode(value);
       setResponse((prev) => prev + chunkValue);
     }
+    addMessage({'type': 'ai', msg: response});
     setLoading(false);
     scrollToBottom();
   };
