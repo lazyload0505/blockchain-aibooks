@@ -66,7 +66,7 @@ export default function Chat() {
       const chunkValue = decoder.decode(value);
       setResponse((prev) => prev + chunkValue);
     }
-    addMessage({'type': 'ai', msg: response});
+    addMessage({'type': 'ai', msg: response.slice()});
     setLoading(false);
     scrollToBottom();
   };
