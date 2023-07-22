@@ -1,23 +1,6 @@
 'use client'
 import React, { useState, useRef} from "react";
 
-// import MDBContainer from "mdb-react-ui-kit";
-// import MDBRow from "mdb-react-ui-kit";
-// import MDBCol from "mdb-react-ui-kit";
-// import MDBCard from "mdb-react-ui-kit";
-// import MDBCardBody from "mdb-react-ui-kit";
-// import MDBTypography from "mdb-react-ui-kit";
-// import MDBCardHeader from "mdb-react-ui-kit";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBTypography,
-  MDBCardHeader 
-} from "mdb-react-ui-kit";
-
 export default function Chat() {
 
   const [loading, setLoading] = useState(false);
@@ -88,20 +71,16 @@ export default function Chat() {
   };
 
   return (
-    <MDBContainer fluid className="py-1" style={{ backgroundColor: "#eee" }}>
-      <MDBRow>
-        <MDBCol md="6" lg="5" xl="3" className="mb-4 mb-md-0">
+    <div className="container-fluid py-1" style={{ backgroundColor: "#eee" }}>
+      <div className="row">
+        <div className="col-3">
           <h5 className="font-weight-bold mb-3 text-center text-lg-start">
             AI Bots
           </h5>
-          <MDBCard>
-            <MDBCardBody>
-              <MDBTypography listUnStyled className="mb-0">
-                <li
-                  className="p-2 border-bottom"
-                  style={{ backgroundColor: "#eee" }}
-                >
-                  <a href="#!" className="d-flex justify-content-between">
+          <div className="card">
+            <div className="card-body">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item"><a href="#!" className="d-flex justify-content-between">
                     <div className="d-flex flex-row">
                       <img
                         src="https://img.icons8.com/fluency/2x/iron-man.png"
@@ -116,14 +95,8 @@ export default function Chat() {
                         </p>
                       </div>
                     </div>
-                    {/* <div className="pt-1">
-                      <p className="small text-muted mb-1">Just now</p>
-                      <span className="badge bg-danger float-end">1</span>
-                    </div> */}
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
+                  </a></li>
+              <li className="list-group-item"><a href="#!" className="d-flex justify-content-between">
                     <div className="d-flex flex-row">
                       <img
                         src="https://img.icons8.com/fluency/2x/futurama-bender.png"
@@ -138,55 +111,11 @@ export default function Chat() {
                         </p>
                       </div>
                     </div>
-                    {/* <div className="pt-1">
-                      <p className="small text-muted mb-1">5 mins ago</p>
-                    </div> */}
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
+                  </a></li>
+              <li className="list-group-item"><a href="#!" className="d-flex justify-content-between">
                     <div className="d-flex flex-row">
                       <img
                         src="https://img.icons8.com/fluency/2x/super-mario.png"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">ABC</p>
-                        <p className="small text-muted">
-                          You can ask me anything about blockchain
-                        </p>
-                      </div>
-                    </div>
-                    {/* <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div> */}
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://img.icons8.com/fluency/2x/homer-simpson.png"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">...</p>
-                        <p className="small text-muted">
-                          ...
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
                         alt="avatar"
                         className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                         width="60"
@@ -198,15 +127,13 @@ export default function Chat() {
                         </p>
                       </div>
                     </div>
-                  </a>
-                </li>
-              </MDBTypography>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol md="6" lg="7" xl="9">
-          <MDBTypography>
-            <ul style={{'height': '400px', 'overflow': 'scroll'}} ref={messagesEndRef}>
+                  </a></li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div className="col-9">
+            <ul className="row" style={{'height': '400px', 'overflow': 'scroll'}} ref={messagesEndRef}>
             {messages.map((item, index) => {
               return (
                 <li key={index} className={"d-flex mb-4 " + (item.type == 'ai' ? "justify-content-start" : "justify-content-end") }>
@@ -216,19 +143,14 @@ export default function Chat() {
                 className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
                 width="60"
               />}
-              <MDBCard>
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">{item.type == 'ai' ? 'AI Bot': 'You'}</p>
-                  {/* <p className="text-muted small mb-0">
-                    <MDBIcon far icon="clock" /> 12 mins ago
-                  </p> */}
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    {item.msg}
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
+              <div className="card">
+                <div className="card-header">
+                {item.type == 'ai' ? 'AI Bot': 'You'}
+                </div>
+                <div className="card-body">
+                  <p className="card-text">{item.msg}</p>
+                </div>
+              </div>
               {item.type == 'user' && <img
                 src="https://img.icons8.com/fluency/2x/jake.png"
                 alt="avatar"
@@ -245,33 +167,30 @@ export default function Chat() {
                 className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
                 width="60"
               />
-              <MDBCard>
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">AI Bot</p>
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    {response != '' ? response : 'thinking...'}
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
+              <div className="card">
+                <div className="card-header">
+                  AI Bot
+                </div>
+                <div className="card-body">
+                  <p className="card-text">{response != '' ? response : 'thinking...'}</p>
+                </div>
+              </div>
             </li>)}
             </ul>
-          </MDBTypography>
-          <div className="form-floating">
+          <div className="form-floating row">
             <textarea className="form-control" 
             placeholder="Leave a comment here" 
             id="floatingTextarea2" 
             style={{ height: "100px" }}
             onChange={(e) => setInput(e.target.value)}>
             </textarea>
-            <label htmlFor="floatingTextarea2">Comments</label>
+            <label htmlFor="floatingTextarea2">Message</label>
           </div>
           <div className="d-grid gap-2 d-md-flex justify-content-md-end">
             <button className="btn btn-primary me-md-2" type="button" onClick={(e) => generateResponse(e)}>{!loading ? 'Send' : 'Wait for AI Response...'}</button>
           </div>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+        </div>
+      </div>
+    </div>
   );
 }

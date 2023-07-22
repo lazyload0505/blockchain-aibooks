@@ -23,7 +23,6 @@
     "markmap-common": "^0.14.2",
     "markmap-lib": "^0.14.4",
     "markmap-view": "^0.14.4",
-    "mdb-react-ui-kit": "^6.1.0",
     "next": "13.4.10",
     "openai-edge": "^1.2.0",
     "react": "18.2.0",
