@@ -21,7 +21,7 @@ export default function RootLayout({
         <title>Smart Blockchain Playbook</title>
       </head>
       <body className="">
-        <div className="container-fluid d-flex flex-column vh-100 justify-content-between">
+        <div className="container-fluid d-flex flex-column vh-100 justify-content-between px-0">
           <header className="d-flex flex-column bg-body-tertiary border-bottom">
             <nav className="navbar navbar-expand-lg">
               <div className="container-fluid">

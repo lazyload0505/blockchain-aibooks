@@ -110,7 +110,7 @@ export default function Roadmap() {
                     </a>
                 </li>
                 <li>
-                    <a href="#" className={"nav-link link-body-emphasis "+ ecosystemLinkActive} onClick={() => { changeRoadmapRole('ecosystem') }}>
+                    <a href="#" className={"nav-link link-body-emphasis list-group-item-action disabled "+ ecosystemLinkActive} onClick={() => { changeRoadmapRole('ecosystem') }}>
                         {/* <svg className="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg> */}
                         Ecosystem Expert
                     </a>
