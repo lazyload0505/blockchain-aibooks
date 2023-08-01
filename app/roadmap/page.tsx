@@ -5,11 +5,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Transformer } from 'markmap-lib';
 import { Markmap } from 'markmap-view';
 
-import { APP_DEV_MAP_DATA } from '../../data/appdev';
-import { CORE_DEV_MAP_DATA } from '../../data/coredev';
-import { ADV_MAP_DATA } from '../../data/advanced';
-import { BASIS_MAP_DATA } from '../../data/basis';
-import { ECOSYSTEM_MAP_DATA } from '../../data/ecosystem'
+import { APP_DEV_MAP_DATA } from '../../data/roadmap/appdev';
+import { CORE_DEV_MAP_DATA } from '../../data/roadmap/coredev';
+import { ADV_MAP_DATA } from '../../data/roadmap/advanced';
+import { BASIS_MAP_DATA } from '../../data/roadmap/basis';
+import { ECOSYSTEM_MAP_DATA } from '../../data/roadmap/ecosystem'
 
 const transformer = new Transformer();
 let mm: any;

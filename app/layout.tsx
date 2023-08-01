@@ -18,14 +18,14 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Smart Blockchain Playbook</title>
+        <title>Smart Playbook - Blockchain</title>
       </head>
       <body className="">
         <div className="container-fluid d-flex flex-column vh-100 justify-content-between px-0">
           <header className="d-flex flex-column bg-body-tertiary border-bottom">
             <nav className="navbar navbar-expand-lg">
               <div className="container-fluid">
-                <a className="navbar-brand" href="#">Smart Blockchain Playbook</a>
+                <a className="navbar-brand" href="#">Smart Playbook - Blockchain</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                 </button>
