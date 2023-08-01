@@ -1,5 +1,8 @@
 'use client'
 import React, { useState, useRef} from "react";
+import styles from './page.module.css'
+
+const msgs = [{role: 'assistant', content: 'I am a blockchain developer AI Bot, what can I help you?'}];
 
 export default function Chat() {
 
@@ -8,30 +11,38 @@ export default function Chat() {
   const [response, setResponse] = useState<string>("");
   const messagesEndRef = useRef<any>(null)
 
-  const prompt = `Question is '${input}', Generate a answer with less than 800 characters.`;
+  const [messages, setMessages] = useState([
+    {role: 'assistant', content: 'I am a blockchain developer AI Bot, what can I help you?'}
+  ]);
 
-  const msgs = [
-    {type: 'ai', msg: 'I am a blockchain AI Bot, what can I help you?'}
-  ];
-
-  const [messages, setMessages] = useState(msgs);
-
-  function addMessage(msg: {type: string, msg: string}) {
-    setMessages(msgs => [...msgs, msg]);
+  function addMessage(msg: {role: string, content: string}) {
+    console.log('msg:', msg)
+    // setMessages(msgs => [...msgs, msg]);
+    // console.log('msgs:',messages);
+    msgs.push(msg);
+    console.log('msgs:',msgs);
+    setMessages(msgs);
     scrollToBottom();
   }
 
   const scrollToBottom = () => {
-    console.log('ref', messagesEndRef.current);
-    messagesEndRef.current?.scrollIntoView(false)
+    setTimeout(function() {
+      const scrollHeight = messagesEndRef.current?.scrollHeight;
+      messagesEndRef.current?.scroll({top: scrollHeight, behavior: 'smooth'});
+    }, 0);
+
   }
 
   const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (input == '') {
+      alert('Please input your message');
+      return;
+    }
     e.preventDefault();
     setResponse("");
     setLoading(true);
 
-    addMessage({'type': 'user', msg: input});
+    addMessage({role: 'user', content: input});
     setInput('');
 
     const res = await fetch("/api/openai", {
@@ -40,12 +51,13 @@ export default function Chat() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        prompt,
+        type: 'Blockchain Dev',
+        msgs: msgs,
       }),
     });
 
     if (!res.ok) {
-      addMessage({'type': 'ai', msg: 'Error happen when chating with AI...'});
+      addMessage({role: 'assistant', content: 'Error happen when chating with AI...'});
       setLoading(false);
       scrollToBottom();
       return;
@@ -69,11 +81,12 @@ export default function Chat() {
       const chunkValue = decoder.decode(value);
       message += chunkValue;
       setResponse((prev) => prev + chunkValue);
+      scrollToBottom();
     }
     console.log('AI message res:', message);
-    addMessage({'type': 'ai', msg: message});
+    addMessage({role: 'assistant', content: message});
     setLoading(false);
-    scrollToBottom();
+    
   };
 
   return (
@@ -142,22 +155,22 @@ export default function Chat() {
             <ul className="row" style={{'height': 'calc(100vh - 280px)', 'overflow': 'scroll'}} ref={messagesEndRef}>
             {messages.map((item, index) => {
               return (
-                <li key={index} className={"d-flex mb-4 " + (item.type == 'ai' ? "justify-content-start" : "justify-content-end") }>
-              {item.type == 'ai' && <img
+                <li key={index} className={"d-flex mb-4 " + (item.role == 'assistant' ? "justify-content-start" : "justify-content-end") }>
+              {item.role == 'assistant' && <img
                 src="https://img.icons8.com/fluency/2x/iron-man.png"
                 alt="avatar"
                 className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
                 width="60"
               />}
-              <div className="card">
+              <div className={"card " + styles.message}>
                 <div className="card-header">
-                {item.type == 'ai' ? 'AI Bot': 'You'}
+                {item.role == 'assistant' ? 'AI Bot': 'You'}
                 </div>
                 <div className="card-body">
-                  <p className="card-text">{item.msg}</p>
+                  <p className="card-text">{item.content}</p>
                 </div>
               </div>
-              {item.type == 'user' && <img
+              {item.role == 'user' && <img
                 src="https://img.icons8.com/fluency/2x/jake.png"
                 alt="avatar"
                 className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
@@ -188,6 +201,7 @@ export default function Chat() {
             placeholder="Leave a comment here" 
             id="floatingTextarea2" 
             style={{ height: "100px" }}
+            value={input}
             onChange={(e) => setInput(e.target.value)}>
             </textarea>
             <label htmlFor="floatingTextarea2">Message</label>
