@@ -24,7 +24,7 @@
     "markmap-lib": "^0.14.4",
     "markmap-view": "^0.14.4",
     "next": "13.4.10",
-    "openai-edge": "^1.2.0",
+    "openai": "^4.24.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.1.6"
